@@ -1,0 +1,11 @@
+embed-server --server-config=standalone.xml
+
+echo Instalando Drivers de Banco de dados 
+batch
+echo Oracle module com.oracle
+/subsystem=datasources/jdbc-driver=oracle:add(driver-name=oracle,driver-module-name=com.oracle,driver-xa-datasource-class-name=oracle.jdbc.xa.client.OracleXADataSource)
+echo PostgresSQL module org.postgresql
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql.jdbc,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+echo Teiid module org.jboss.teiid.client
+/subsystem=datasources/jdbc-driver=teiid:add(driver-name=teiid,driver-module-name=org.jboss.teiid.client,driver-xa-datasource-class-name=org.teiid.jdbc.TeiidDataSource)
+run-batch

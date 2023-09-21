@@ -1,0 +1,19 @@
+embed-server --server-config=standalone.xml
+
+echo Adicionando Datasource SIGEO DESENVOLV
+/subsystem=datasources/data-source=SigeoDS:add(connection-url=jdbc:oracle:thin:@10.0.12.38:1521/dbdes06.tst, jndi-name=java:jboss/datasources/SigeoDS, driver-class=oracle.jdbc.OracleDriver, driver-name=oracle, user-name=sigeo, password=sigeo, enabled=true, spy=true, use-ccm=true, background-validation=true, valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker, stale-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker, exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter)
+
+echo Adicionando Datasource REINF DESENV
+/subsystem=datasources/data-source=ReinfDS:add(connection-url=jdbc:oracle:thin:@10.0.12.38:1521/dbdes06.tst, jndi-name=java:jboss/datasources/ReinfDS, driver-class=oracle.jdbc.OracleDriver, driver-name=oracle, user-name=reinf, password=reinf, enabled=true, spy=true, use-ccm=true, background-validation=true, valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker, stale-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker, exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter)
+
+echo Adicionando Datasource SIGEO HOMOLOG
+/subsystem=datasources/data-source=SigeoHomologDS:add(connection-url=jdbc:oracle:thin:@10.0.12.88:1521/dbhml50.tst, jndi-name=java:jboss/datasources/SigeoHomologDS, driver-class=oracle.jdbc.OracleDriver, driver-name=oracle, user-name=sigeo, password=sigeo, enabled=true, spy=true, use-ccm=true, background-validation=true, valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker, stale-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker, exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter)
+
+echo Adicionando Datasource AJ DESENV
+/subsystem=datasources/data-source=OracleDS:add(connection-url=jdbc:oracle:thin:@10.0.12.38:1521/dbdes06.tst, jndi-name=java:jboss/datasources/AJGDS, driver-class=oracle.jdbc.OracleDriver, driver-name=oracle, user-name=O_AJG2, password=ajg, enabled=true, use-ccm=false, background-validation=false, min-pool-size=1, max-pool-size=20, validate-on-match=false, set-tx-query-timeout=false, blocking-timeout-wait-millis=0, idle-timeout-minutes=0, query-timeout=0, use-try-lock=0, allocation-retry=0, allocation-retry-wait-millis=0, prepared-statements-cache-size=32, share-prepared-statements=false, new-connection-sql="BEGIN EXECUTE IMMEDIATE 'ALTER SESSION SET NLS_SORT=BINARY_AI'; EXECUTE IMMEDIATE 'ALTER SESSION SET NLS_COMP=LINGUISTIC'; END;")
+
+echo Adicionando Datasource TEIID
+/subsystem=datasources/xa-data-source=sigep-teiid-ds:add(jndi-name=java:/sigep-teiid-ds, driver-name=teiid, xa-datasource-class=org.teiid.jdbc.TeiidDataSource, user-name=sigeo-dev, password="sigeo-dev", enabled=true, same-rm-override=false, no-tx-separate-pool=true, check-valid-connection-sql=SELECT 1)
+/subsystem=datasources/xa-data-source=sigep-teiid-ds/xa-datasource-properties=PortNumber:add(value=31000)
+/subsystem=datasources/xa-data-source=sigep-teiid-ds/xa-datasource-properties=DatabaseName:add(value=Sigep)
+/subsystem=datasources/xa-data-source=sigep-teiid-ds/xa-datasource-properties=ServerName:add(value=10.0.16.249)
